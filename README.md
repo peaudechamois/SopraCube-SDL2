@@ -128,4 +128,4 @@ Remove-Item Env:CMAKE_GENERATOR_INSTANCE -ErrorAction SilentlyContinue
 
 - Or remove/adjust `CMAKE_GENERATOR_INSTANCE` in Windows System Environment Variables.
 
-This repo’s `msvc-x64` preset also sets `CMAKE_GENERATOR_INSTANCE` to the standard VS 2022 Community path to avoid this class of issue.
+Note: If you have multiple Visual Studio installs and CMake keeps picking the wrong one, you *can* set `CMAKE_GENERATOR_INSTANCE` to your actual VS install folder (e.g. `...\Microsoft Visual Studio\2022\Community` or `...\2022\BuildTools`). If you see “could not find any instance of Visual Studio”, clear `CMAKE_GENERATOR_INSTANCE` and re-configure.
