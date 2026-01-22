@@ -6,6 +6,8 @@ SDL2 is compiled **from local sources** (downloaded into `third_party/SDL2`) so 
 
 ## 1) Prerequisites (Windows x64)
 
+Note: **Visual Studio Code is not the compiler/toolchain.** You still need **Visual Studio 2022** (Community) or **Visual Studio Build Tools 2022** with the C++ workload so CMake can use the `Visual Studio 17 2022` generator.
+
 ### Toolchain (compiler)
 Pick **one**:
 
@@ -96,6 +98,18 @@ So SDL2 gets compiled as part of your normal configure/build steps (no separate 
 - By default, `.gitignore` excludes `third_party/SDL2` (downloaded sources). Remove that ignore entry if you want to commit SDL2 sources into your repository.
 
 ## Troubleshooting
+
+### VS Code is installed, but CMake can’t find “Visual Studio 17 2022”
+
+VS Code version doesn’t matter here — the error means the **MSVC toolchain** is missing or CMake is being pointed at the wrong install.
+
+On the failing machine, run:
+
+```powershell
+.cscriptscdiagnose_toolchain.ps1
+```
+
+If it reports no instance with MSVC C++ tools, install **Build Tools 2022** (or VS 2022) with **Desktop development with C++**.
 
 ### CMake says it can’t find the Visual Studio instance
 
