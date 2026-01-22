@@ -6,11 +6,11 @@
 .history/
 
 # CMake
-CMakeUserPresets.json
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-*.cmake
+#CMakeUserPresets.json
+#CMakeFiles/
+#CMakeCache.txt
+#cmake_install.cmake
+#*.cmake
 
 # Windows
 *.obj
