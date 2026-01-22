@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <stdbool.h>
+#include <math.h>
 
 int main(int argc, char *argv[])
 {
@@ -26,7 +27,12 @@ int main(int argc, char *argv[])
         SDL_Quit();
         return 1;
     }
-
+    int carre[4][2] = {
+        {-100, 0},
+        {0, -100},
+        {100, 0},
+        {0, 100},
+    };
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer)
     {
@@ -35,7 +41,9 @@ int main(int argc, char *argv[])
         SDL_Quit();
         return 1;
     }
-
+    int deltay = 270;
+    int deltax = 480;
+    int teta = 0;
     bool running = true;
     while (running)
     {
@@ -50,15 +58,58 @@ int main(int argc, char *argv[])
             {
                 running = false;
             }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_z)
+            {
+                deltay = deltay - 10;
+            }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_q)
+            {
+                deltax = deltax - 10;
+            }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_s)
+            {
+                deltay = deltay + 10;
+            }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_d)
+            {
+                deltax = deltax + 10;
+            }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_e)
+            {
+                teta = teta - 2;
+            }
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_a)
+            {
+                teta = teta + 2;
+            }
         }
 
         SDL_SetRenderDrawColor(renderer, 18, 18, 24, 255);
         SDL_RenderClear(renderer);
 
-        SDL_Rect rect = { 100, 100, 200, 120 };
-        SDL_SetRenderDrawColor(renderer, 80, 180, 255, 255);
-        SDL_RenderFillRect(renderer, &rect);
-
+        // SDL_Rect rect = { 100, 100, 300, 300 };
+        SDL_SetRenderDrawColor(renderer, 26, 198, 193, 1);
+        //.SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderDrawLine(renderer,
+                           (cos(teta) * carre[2][0] - sin(teta) * carre[2][1]) + deltax,
+                           (sin(teta) * carre[2][0] + cos(teta) * carre[2][1]) + deltay,
+                           (cos(teta) * carre[3][0] - sin(teta) * carre[3][1]) + deltax,
+                           (sin(teta) * carre[3][0] + cos(teta) * carre[3][1]) + deltay);
+        SDL_RenderDrawLine(renderer,
+                           (cos(teta) * carre[0][0] - sin(teta) * carre[0][1]) + deltax,
+                           (sin(teta) * carre[0][0] + cos(teta) * carre[0][1]) + deltay,
+                           (cos(teta) * carre[1][0] - sin(teta) * carre[1][1]) + deltax,
+                           (sin(teta) * carre[1][0] + cos(teta) * carre[1][1]) + deltay);
+        SDL_RenderDrawLine(renderer,
+                           (cos(teta) * carre[3][0] - sin(teta) * carre[3][1]) + deltax,
+                           (sin(teta) * carre[3][0] + cos(teta) * carre[3][1]) + deltay,
+                           (cos(teta) * carre[0][0] - sin(teta) * carre[0][1]) + deltax,
+                           (sin(teta) * carre[0][0] + cos(teta) * carre[0][1]) + deltay);
+        SDL_RenderDrawLine(renderer,
+                           (cos(teta) * carre[1][0] - sin(teta) * carre[1][1]) + deltax,
+                           (sin(teta) * carre[1][0] + cos(teta) * carre[1][1]) + deltay,
+                           (cos(teta) * carre[2][0] - sin(teta) * carre[2][1]) + deltax,
+                           (sin(teta) * carre[2][0] + cos(teta) * carre[2][1]) + deltay);
         SDL_RenderPresent(renderer);
     }
 
