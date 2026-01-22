@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake: Configure (msvc-x64)",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--preset", "msvc-x64"],
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: Build (Debug)",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "--preset", "debug"],
+      "problemMatcher": ["$msCompile"],
+      "group": "build"
+    },
+    {
+      "label": "Run: SopraCube2 (Debug)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\build\\msvc-x64\\Debug\\SopraCube2.exe",
+      "dependsOn": ["CMake: Build (Debug)"],
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Build outputs
+/build/
+/out/
+
+# VS Code local history
+.history/
+
+# CMake
+CMakeUserPresets.json
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+
+# Windows
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+*.lib
+*.exp
+
+# SDL2 sources (downloaded locally)
+#/third_party/SDL2/
